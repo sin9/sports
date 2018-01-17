@@ -1,4 +1,4 @@
-package cn.sinoutx.sports.entity;
+package cn.sinoutx.sports.model.entity;
 
 import java.util.List;
 
@@ -24,8 +24,8 @@ public class Eqname {
 	@Column
 	private String name;
 	
-	@OneToMany(mappedBy="eqname")
 	@Column
+	@OneToMany(mappedBy="eqnid")
 	private List<Equipment> equipments;
 	
 	@ManyToOne

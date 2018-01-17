@@ -5,4 +5,4 @@
  * @author asus
  *
  */
-package cn.sinoutx.sports.services;
+package cn.sinoutx.sports.model.dao;

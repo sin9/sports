@@ -1,4 +1,4 @@
-package cn.sinoutx.sports.entity;
+package cn.sinoutx.sports.model.entity;
 
 import java.util.Date;
 

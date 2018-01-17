@@ -5,4 +5,4 @@
  * @author asus
  *
  */
-package cn.sinoutx.sports.controller;
+package cn.sinoutx.sports.model.mappers;
