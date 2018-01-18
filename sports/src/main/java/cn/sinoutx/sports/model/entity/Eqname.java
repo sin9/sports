@@ -19,7 +19,7 @@ public class Eqname {
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer eqid;
+	private Integer eqnid;
 	
 	@Column
 	private String name;
@@ -35,16 +35,32 @@ public class Eqname {
 	@Column
 	private String detail;
 	
+	@Column
+	@OneToMany(mappedBy="eqnid")
+	private List<Intolog> intologs;
+	
+	@Column
+	@OneToMany(mappedBy="eqnid")
+	private List<Outlog> outlogs;
+	
 	public Eqname() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getEqid() {
-		return eqid;
+	public Integer getEqnid() {
+		return eqnid;
 	}
 
-	public void setEqid(Integer eqid) {
-		this.eqid = eqid;
+	public void setEqnid(Integer eqnid) {
+		this.eqnid = eqnid;
+	}
+
+	public List<Intolog> getIntologs() {
+		return intologs;
+	}
+
+	public void setIntologs(List<Intolog> intologs) {
+		this.intologs = intologs;
 	}
 
 	public String getName() {

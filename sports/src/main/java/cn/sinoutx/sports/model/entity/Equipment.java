@@ -26,6 +26,18 @@ public class Equipment {
 	
 	@Column
 	private Date indate;
+	
+	@ManyToOne()
+	@JoinColumn(name="eqstate")
+	private Eqstate eqsid;
+
+	public Eqstate getEqsid() {
+		return eqsid;
+	}
+
+	public void setEqsid(Eqstate eqsid) {
+		this.eqsid = eqsid;
+	}
 
 	public Equipment() {
 		// TODO Auto-generated constructor stub

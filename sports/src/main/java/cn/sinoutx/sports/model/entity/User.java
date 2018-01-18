@@ -1,5 +1,7 @@
 package cn.sinoutx.sports.model.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,6 +40,42 @@ public class User {
 	@Column
 	private String email;
 	
+	@Column
+	@OneToMany(mappedBy="uid")
+	private List<Intolog> intologs;
+	
+	@Column
+	@OneToMany(mappedBy="usid")
+	private List<Outlog> outlogs;
+	
+	@Column
+	@OneToMany(mappedBy="uid")
+	private List<Returnlog> returnlogs;
+	
+	public List<Returnlog> getReturnlogs() {
+		return returnlogs;
+	}
+
+	public void setReturnlogs(List<Returnlog> returnlogs) {
+		this.returnlogs = returnlogs;
+	}
+
+	public List<Intolog> getIntologs() {
+		return intologs;
+	}
+
+	public void setIntologs(List<Intolog> intologs) {
+		this.intologs = intologs;
+	}
+
+	public List<Outlog> getOutlogs() {
+		return outlogs;
+	}
+
+	public void setOutlogs(List<Outlog> outlogs) {
+		this.outlogs = outlogs;
+	}
+
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
