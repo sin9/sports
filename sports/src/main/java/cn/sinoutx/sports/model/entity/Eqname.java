@@ -43,6 +43,26 @@ public class Eqname {
 	@OneToMany(mappedBy="eqnid")
 	private List<Outlog> outlogs;
 	
+	@Column
+	@OneToMany(mappedBy="eqnid")
+	private List<Returnlog> returnlogs;
+	
+	public List<Outlog> getOutlogs() {
+		return outlogs;
+	}
+
+	public void setOutlogs(List<Outlog> outlogs) {
+		this.outlogs = outlogs;
+	}
+
+	public List<Returnlog> getReturnlogs() {
+		return returnlogs;
+	}
+
+	public void setReturnlogs(List<Returnlog> returnlogs) {
+		this.returnlogs = returnlogs;
+	}
+
 	public Eqname() {
 		// TODO Auto-generated constructor stub
 	}

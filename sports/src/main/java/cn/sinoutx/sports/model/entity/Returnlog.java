@@ -2,7 +2,6 @@ package cn.sinoutx.sports.model.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ public class Returnlog {
 	private Integer reid;
 	
 	@Column
-	private String rename;
+	private String retname;
 	
 	@Column
 	private Date redate;
@@ -33,7 +32,7 @@ public class Returnlog {
 	@JoinColumn(name="eqname")
 	private Eqname eqnid;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
     @JoinColumn(name = "outlog")
 	private Outlog outid;
 	
@@ -59,12 +58,12 @@ public class Returnlog {
 		this.reid = reid;
 	}
 
-	public String getRename() {
-		return rename;
+	public String getRetname() {
+		return retname;
 	}
 
-	public void setRename(String rename) {
-		this.rename = rename;
+	public void setRetname(String retname) {
+		this.retname = retname;
 	}
 
 	public Date getRedate() {

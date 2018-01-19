@@ -39,7 +39,7 @@ public class Outlog {
 	@JoinColumn(name="user")
 	private User usid;//操作人
 	
-	@OneToOne(mappedBy="reid")
+	@OneToOne(mappedBy="outid")
 	private Returnlog reid;
 	
 	public Returnlog getReid() {
