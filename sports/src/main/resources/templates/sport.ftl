@@ -1,3 +1,4 @@
+ <#if Session.user?exists>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,8 @@
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
         <a href="javascript:;">
-        sin
+     ${Session.user.uname}   
+     
         </a>
         <dl class="layui-nav-child">
           <dd><a href="">基本资料</a></dd>
@@ -287,3 +289,9 @@ layui.use('element', function(){
     </script>
 </body>
 </html>
+<#else>
+<script language="javascript" type="text/javascript"> 
+// 以下方式直接跳转
+window.location.href='/login';
+</script>
+</#if>
