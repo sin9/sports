@@ -13,14 +13,14 @@
   <div class="layui-header">
     <div class="layui-logo">高校体育器材管理系统</div>
     <ul class="layui-nav layui-layout-left">
-      <li class="layui-nav-item"><a href="">控制台</a></li>
-      <li class="layui-nav-item"><a href="">场馆管理</a></li>
-      <li class="layui-nav-item"><a href="">器材管理</a></li>
+      <li class="layui-nav-item"><a href="/sport">控制台</a></li>
+      <li class="layui-nav-item"><a href="/site">场馆管理</a></li>
+      <li class="layui-nav-item"><a href="/allequipment">器材管理</a></li>
       <li class="layui-nav-item">
         <a href="javascript:;">用户管理</a>
         <dl class="layui-nav-child">
-          <dd><a href="">权限管理</a></dd>
-          <dd><a href="">用户信息管理</a></dd>
+          <dd><a href="/role">权限管理</a></dd>
+          <dd><a href="/usermanage">用户信息管理</a></dd>
         </dl>
       </li>
     </ul>
@@ -31,11 +31,11 @@
      
         </a>
         <dl class="layui-nav-child">
-          <dd><a href="">基本资料</a></dd>
-          <dd><a href="">密码修改</a></dd>
+          <dd><a href="/userinformation">基本资料</a></dd>
+          <dd><a href="/changepassword">密码修改</a></dd>
         </dl>
       </li>
-      <li class="layui-nav-item"><a href="">注销</a></li>
+      <li class="layui-nav-item"><a href="/logout">注销</a></li>
     </ul>
   </div>
   
@@ -43,36 +43,37 @@
     <div class="layui-side-scroll">
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
         <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">所有器材</a>
+          <a class="" href="javascript:;">器材</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">田径器材</a></dd>
-            <dd><a href="javascript:;">球类器材</a></dd>
-            <dd><a href="javascript:;">举重器材</a></dd>
-            <dd><a href="javascript:;">冰雪器材</a></dd>
+          <dd><a href="/allequipment">所有器材</a></dd>
+            <dd><a href="/tianjing">田径器材</a></dd>
+            <dd><a href="/ball">球类器材</a></dd>
+            <dd><a href="/juzhong">举重器材</a></dd>
+            <dd><a href="/snow">冰雪器材</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
           <a href="javascript:;">器材入库</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">新增器材</a></dd>
-            <dd><a href="javascript:;">入库记录</a></dd>
+            <dd><a href="/addequipment">新增器材</a></dd>
+            <dd><a href="/intolog">入库记录</a></dd>
           </dl>
         </li>
          <li class="layui-nav-item">
           <a href="javascript:;">器材出库</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">器材租借</a></dd>
-            <dd><a href="javascript:;">出库记录</a></dd>
+            <dd><a href="/rentequipment">器材租借</a></dd>
+            <dd><a href="/outlog">出库记录</a></dd>
           </dl>
         </li>
           <li class="layui-nav-item">
           <a href="javascript:;">器材归还</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">归还信息</a></dd>
-            <dd><a href="javascript:;">归还记录</a></dd>
+            <dd><a href="/return">归还信息</a></dd>
+            <dd><a href="/returnlog">归还记录</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="">场地管理</a></li>
+        <li class="layui-nav-item"><a href="/site">场地管理</a></li>
       </ul>
     </div>
   </div>
