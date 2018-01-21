@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="cn.sinoutx.sports.model.mappers.EquipmentMapper">
+
+	<resultMap type="cn.sinoutx.sports.model.entity.Equipment" id="euipment">
+		<id column="eid" property="eid"/>
+		<result column="indate" property="indate"/>
+		<association property="eqname">
+			<id column="eqnid" property="eqnid"/>
+			<result column="name" property="name"/>
+			<result column="detail" property="detail"/>
+				<association property="eqtype">
+				<id column="eqtid" property="eqtid"/>
+				<result column="eqtname" property="eqtname"/>
+			</association>
+		</association>
+		<association property="eqstate">
+			<id column="eqsid" property="eqsid"/>
+			<result column="eqsname" property="eqsname"/>
+		</association>
+	</resultMap>
+	
+	<select id="countEquipByEnameOrEqstate" resultMap="java.lang.Integer">
+	select count(*) from equipment 
+	<where>
+			<if test="eqname!=null">
+				and eqname = #{eqname}
+			</if>
+			<if test="eqstate!=null">
+				and eqstate = #{eqstate}
+			</if>
+		</where>
+	</select>
+
+	
+	
+</mapper>
