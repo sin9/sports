@@ -28,9 +28,6 @@
 			<if test="eqname!=null">
 				and eqname = #{eqname}
 			</if>
-			<if test="eqstate!=null">
-				and eqstate = #{eqstate}
-			</if>
 		</where>
 	</select>
 
