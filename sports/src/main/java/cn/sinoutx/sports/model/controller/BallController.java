@@ -13,8 +13,8 @@ import cn.sinoutx.sports.model.entity.Eqtype;
 import cn.sinoutx.sports.model.entity.Equipment;
 
 @Controller
-@RequestMapping("/tianjing")
-public class TianjingController {
+@RequestMapping("/ball")
+public class BallController {
 
 	@Autowired
 	public EquipmentDao ed;
@@ -24,7 +24,7 @@ public class TianjingController {
 	
 	@RequestMapping
 	private void index(Model model) {
-		Eqtype eqtype = eqd.findOne(1);
+		Eqtype eqtype = eqd.findOne(2);
 		List<Equipment> equipments = ed.findByEqtype(eqtype);
 		model.addAttribute("eqtj", equipments);
 
