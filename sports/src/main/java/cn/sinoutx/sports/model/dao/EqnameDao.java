@@ -6,5 +6,5 @@ import cn.sinoutx.sports.model.entity.Eqname;
 
 public interface EqnameDao extends CrudRepository<Eqname, Integer> {
 
-	
+	Eqname findByName(String name);
 }
