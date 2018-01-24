@@ -12,7 +12,7 @@ import cn.sinoutx.sports.model.entity.Equipment;
 public interface EquipmentDao extends CrudRepository<Equipment, Integer> {
 
 	@Query("select count(*) from Equipment e where e.eqnid = ?1")
-	Integer countbyeqname(Eqname eqname);
+	Long countbyeqname(Eqname eqname);
 	
 	@Query("select e from Equipment e join e.eqnid n where n.eqtid = ?1")
 	List<Equipment> findByEqtype(Eqtype eqtid);

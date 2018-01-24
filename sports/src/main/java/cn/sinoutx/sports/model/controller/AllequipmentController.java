@@ -1,6 +1,8 @@
 package cn.sinoutx.sports.model.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +29,19 @@ public class AllequipmentController {
 	@RequestMapping
 	private void index(Model model) {
 	Iterable<Eqname> eqnames = eqd.findAll();
-	Map< Eqname,Integer> eqinfo = new HashMap<>();
+	//freemarker遍历key为实体类的map好像有问题
+	
+	List<Eqname> eqinfo = new ArrayList<>();
 		for (Eqname eqname : eqnames) {
 			if(ed.countbyeqname(eqname)!=null) {
-				 eqinfo.put(eqname,ed.countbyeqname(eqname));
-				 System.out.println(eqname);
+				eqname.setCount(ed.countbyeqname(eqname));
+				
 			}else {
-				 eqinfo.put(eqname,0);
+				eqname.setCount(0l);
+				 eqinfo.add(eqname);
 			}
-			
+			 eqinfo.add(eqname);
+			 System.out.println(ed.countbyeqname(eqname));
 		}
 		model.addAttribute("eqinfo", eqinfo);
 

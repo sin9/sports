@@ -89,7 +89,7 @@
     				<th lay-data="{field:'maname', width:80}">器材名</th>
     				<th lay-data="{field:'matype', width:130, sort: true}">器材类型</th>
     				
-    				
+    				<th lay-data="{field:'count', width:80}">数量</th>
     				<th lay-data="{field:'sign', width:400}">器材说明</th>
     				<!--<th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
     				<th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>-->
@@ -99,14 +99,13 @@
     		<tbody>
     		 <#if eqinfo?exists>
 
-                <#list eqinfo?keys as key>
+                <#list eqinfo as key>
 
                    <tr>
-
                              <td>${key.eqnid}</td>
                            <td>${key.name}</td>
                            <td>${key.eqtid.eqtname}</td>
-                        
+                        	<td>${key.getCount()}</td>
                            <td>${key.detail}</td>
 							<td></td>
                    </tr>

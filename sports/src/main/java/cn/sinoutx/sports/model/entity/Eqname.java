@@ -46,7 +46,17 @@ public class Eqname {
 	@Column
 	@OneToMany(mappedBy="eqnid")
 	private List<Returnlog> returnlogs;
+	//统计数量
+	private Long count;
 	
+	public Long getCount() {
+		return count;
+	}
+
+	public void setCount(Long count) {
+		this.count = count;
+	}
+
 	public List<Outlog> getOutlogs() {
 		return outlogs;
 	}

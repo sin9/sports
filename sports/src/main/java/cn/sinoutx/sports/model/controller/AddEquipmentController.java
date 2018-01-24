@@ -26,7 +26,7 @@ public class AddEquipmentController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	private String add(String modules,Integer number,Model model) {
-		
+	
 		return "redirect:/addequipment";
 	}
 }
