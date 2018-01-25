@@ -13,6 +13,6 @@ import cn.sinoutx.sports.model.entity.User;
 public interface IntologDao extends CrudRepository<Intolog, Integer> {
 
 	@Modifying
-    @Query(value = "insert into Intolog(intodate,eqnid,num,uid) values(?1,?2,?3,?4)",nativeQuery = true)
+    @Query(value = "insert into Intolog(intodate,eqname,num,user) values(?1,?2,?3,?4)",nativeQuery = true)
     int addEquipment(Date intodate,Eqname eqname,Integer num,User user);
 }

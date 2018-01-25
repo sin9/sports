@@ -79,41 +79,50 @@
   </div>
   <div class="layui-body" id="main" >
     <!-- 内容主体区域 -->
-   <form class="layui-form" action="/addequipment" method="post" >
-  <div class="layui-form-item" style="margin:20px">
-    <label class="layui-form-label">器材名</label>
-    <div class="layui-input-inline">
-        <select name="eqnid" lay-verify="required" lay-search="">
-
-       <#if eqnames?exists>
-		<#list eqnames?sort_by("eqnid") as eq>
-        
-        <option value="${eq.eqnid}">${eq.name}</option>
-       
-        </#list>
-        </#if>
-      </select>
-    </div>
-     <div class="layui-form-item">
-    <div class="layui-inline">
-      <label class="layui-form-label">数量</label>
-      <div class="layui-input-inline">
-        <input type="text" name="number" lay-verify="required|number" autocomplete="off" class="layui-input">
-      </div>
-    </div>
    
-    <div class="layui-form-item">
-    <div class="layui-input-block">
-      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-    	<#if error?exists>
-		<span style="color:red;">${error}</span>
-        </#if>
-    </div>
-  </div>
-  
-  </form>
-    	
+    	<div style="margin-left:20px">
+    	<table class="layui-table" lay-data="{width: 800, height:400, page:true, id:'idTest'}" lay-filter="demo" >
+    		<thead>
+    			<tr>
+    				
+    				<th lay-data="{field:'id', width:130, sort: true, fixed: true}">入库记录ID</th>
+    				<th lay-data="{field:'maname', width:130}">器材名</th>
+    				<th lay-data="{field:'matype', width:200, sort: true}">入库时间</th>
+    				
+    				<th lay-data="{field:'wealth', width:80}">入库数量</th>
+    				
+    				<th lay-data="{field:'sign', width:150}">操作人</th>
+    		
+    				<th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    		 <#if intologs?exists>
+
+                <#list intologs?sort_by("inid") as into>
+
+                   <tr>
+
+                             <td>${into.inid}</td>
+                           <td>${into.eqnid.name}</td>
+                           <td>${into.intodate}</td>
+                           <td>${into.num}</td>
+                        
+                           <td>${into.uid.uname}</td>
+							<td></td>
+                   </tr>
+
+                </#list>
+
+            </#if>
+    		</tbody>
+    	</table>
+    	</div>
+    	<ul class="layui-fixbar" style="right: 50px; bottom: 100px;">
+    		<li class="layui-icon" lay-type="bar1" style="background-color:#393D49"></li>
+    		<li class="layui-icon" lay-type="bar2" style="background-color:#393D49"></li>
+    		<li class="layui-icon layui-fixbar-top" lay-type="top" style="background-color:#393D49"></li>
+    	</ul>
   </div>
   
   <div class="layui-footer">
@@ -130,6 +139,41 @@ layui.use('element', function(){
   
 });
 </script>
+<script type="text/html" id="barDemo">
+    		<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    	</script>
+    	
+    	<script>
+    		layui.use('table', function() {
+    			var table = layui.table;
+    			//监听表格复选框选择
+    			table.on('checkbox(demo)', function(obj) {
+    				console.log(obj)
+    			});
+    			//监听工具条
+    			table.on('tool(demo)', function(obj) {
+    				var data = obj.data;
+    				if(obj.event === 'detail') {
+    					layer.msg('ID：' + data.id + ' 的查看操作');
+    				} else if(obj.event === 'del') {
+    					layer.confirm('真的删除行么', function(index) {
+    						obj.del();
+    						layer.close(index);
+    					});
+    				} else if(obj.event === 'edit') {
+    					layer.alert('编辑行：<br>' + JSON.stringify(data))
+    				}
+    			});
+    	
+    			$('.demoTable .layui-btn').on('click', function() {
+    				var type = $(this).data('type');
+    				active[type] ? active[type].call(this) : '';
+    			});
+    		});
+    	</script>
+
 </body>
 </html>
 <#else>

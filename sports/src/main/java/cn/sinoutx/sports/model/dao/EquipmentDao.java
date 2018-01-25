@@ -21,6 +21,6 @@ public interface EquipmentDao extends CrudRepository<Equipment, Integer> {
 	List<Equipment> findByEqtype(Eqtype eqtid);
 	
 	@Modifying
-    @Query(value = "insert into Equipment(eqnid,eqsid,indate) values(?1,?2,?3)",nativeQuery = true)
+    @Query(value = "insert into Equipment(eqname,eqstate,indate) values(?1,?2,?3)",nativeQuery = true)
     int addEquipment(Eqname eqname,Eqstate eqstate,Date indate);
 }

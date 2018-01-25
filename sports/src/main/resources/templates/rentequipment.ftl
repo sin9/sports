@@ -7,6 +7,7 @@
   <title>高校体育器材管理系统</title>
 <link rel="stylesheet" href="css/layui.css" />
 <link rel="stylesheet" href="css/style.css" />
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -79,13 +80,21 @@
   </div>
   <div class="layui-body" id="main" >
     <!-- 内容主体区域 -->
-   <form class="layui-form" action="/addequipment" method="post" >
-  <div class="layui-form-item" style="margin:20px">
-    <label class="layui-form-label">器材名</label>
-    <div class="layui-input-inline">
-        <select name="eqnid" lay-verify="required" lay-search="">
+   <form class="layui-form" action="/rentequipment" method="post" >
+ <div class="layui-form-item" style="margin:20px">
+    <label class="layui-form-label">租借人姓名</label>
+    <div class="layui-input-block">
+      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+    </div>
+  </div>
 
-       <#if eqnames?exists>
+
+    <label class="layui-form-label">器材名</label>
+    <div class="layui-input-inline" style="margin-left:20px;margin-bottom:20px">
+    
+      <select name="quiz2" id="first" onchange="javascript:demo()">
+        <option value="0">请选择器材</option>
+         <#if eqnames?exists>
 		<#list eqnames?sort_by("eqnid") as eq>
         
         <option value="${eq.eqnid}">${eq.name}</option>
@@ -94,12 +103,11 @@
         </#if>
       </select>
     </div>
-     <div class="layui-form-item">
-    <div class="layui-inline">
-      <label class="layui-form-label">数量</label>
-      <div class="layui-input-inline">
-        <input type="text" name="number" lay-verify="required|number" autocomplete="off" class="layui-input">
-      </div>
+    <div class="layui-input-inline" style="margin-bottom:20px">
+      <select name="quiz3" id="second">
+        <option value="">请选择数量</option>
+        
+      </select>
     </div>
    
     <div class="layui-form-item">
@@ -130,6 +138,28 @@ layui.use('element', function(){
   
 });
 </script>
+<script>  
+	var first=document.getElementById('first');
+	
+    var val = first.value; 
+    
+    function demo(){
+    <#if eqnames?exists>
+	<#list eqnames as eq>
+	alert(val);
+     if(val ==  ${eq.eqnid}){  
+         var sec = document.getElementById('second');  
+         alert(sec);
+         for (var i=0;i<${eq.count};i++)
+         {
+        	sec.innerHTML = "<option value='2'>2</option>";  
+         	/* sec.options[i] = new Option('i+1',i+1);   */
+         }
+        } 
+    </#list>
+    </#if>
+	 }
+</script>  
 </body>
 </html>
 <#else>
