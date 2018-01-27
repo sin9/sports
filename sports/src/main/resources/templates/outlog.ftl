@@ -7,7 +7,6 @@
   <title>高校体育器材管理系统</title>
 <link rel="stylesheet" href="css/layui.css" />
 <link rel="stylesheet" href="css/style.css" />
-
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -80,50 +79,53 @@
   </div>
   <div class="layui-body" id="main" >
     <!-- 内容主体区域 -->
-   <form class="layui-form" action="/rentequipment" method="post" >
- <div class="layui-form-item" style="margin:20px">
-    <label class="layui-form-label">租借人姓名</label>
-    <div class="layui-input-block">
-      <input type="text" name="rentname" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
-    </div>
-  </div>
-
-
-    <label class="layui-form-label">器材名</label>
-    <div class="layui-input-inline" style="margin-left:20px;margin-bottom:20px">
-    
-      <select name="eqnid" id="first">
-        <option value="0">请选择器材</option>
-         <#if eqnames?exists>
-		<#list eqnames?sort_by("eqnid") as eq>
-        
-        <option value="${eq.eqnid}">${eq.name}</option>
-       
-        </#list>
-        </#if>
-      </select>
-    </div>
-    <div class="layui-input-inline" style="margin-bottom:20px">
-      <select name="number" id="second">
-        <option value="">请选择数量</option>
-        <option value="2">1</option>
-        <option value="2">2</option>
-        <option value="2">3</option>
-      </select>
-    </div>
    
-    <div class="layui-form-item">
-    <div class="layui-input-block">
-      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-    	<#if error?exists>
-		  <span style="color:red;">${error}</span>
-        </#if>
-    </div>
-  </div>
-  
-  </form>
-    	
+    	<div style="margin-left:20px">
+    	<table class="layui-table" lay-data="{width: 880, height:400, page:true, id:'idTest'}" lay-filter="demo" >
+    		<thead>
+    			<tr>
+    				
+    				<th lay-data="{field:'id', width:130, sort: true, fixed: true}">出库记录ID</th>
+    				<th lay-data="{field:'maname', width:130}">器材名</th>
+    				<th lay-data="{field:'matype', width:150, sort: true}">出库时间</th>
+    				
+    				<th lay-data="{field:'wealth', width:100}">出库数量</th>
+    				
+    				<th lay-data="{field:'sign', width:100}">操作人</th>
+    				
+    				<th lay-data="{field:'renter', width:100}">租借人</th>
+    		
+    				<th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    		 <#if outlogs?exists>
+
+                <#list outlogs?sort_by("outid") as out>
+
+                   <tr>
+
+                             <td>${out.outid}</td>
+                           <td>${out.eqnid.name}</td>
+                           <td>${out.outdate}</td>
+                           <td>${out.outnum}</td>
+                        
+                           <td>${out.usid.uname}</td>
+                           <td>${out.outname}</td>
+							<td></td>
+                   </tr>
+
+                </#list>
+
+            </#if>
+    		</tbody>
+    	</table>
+    	</div>
+    	<ul class="layui-fixbar" style="right: 50px; bottom: 100px;">
+    		<li class="layui-icon" lay-type="bar1" style="background-color:#393D49"></li>
+    		<li class="layui-icon" lay-type="bar2" style="background-color:#393D49"></li>
+    		<li class="layui-icon layui-fixbar-top" lay-type="top" style="background-color:#393D49"></li>
+    	</ul>
   </div>
   
   <div class="layui-footer">
@@ -140,27 +142,40 @@ layui.use('element', function(){
   
 });
 </script>
-<script>
-$(function(){ 
-	$("#first").change(function(){ //当第一个下拉列表变动内容时第二个下拉列表将会显示 
-	var parentId=$("#first").val(); 
-	var options=""; 
-	<#if eqnames?exists>
-	<#list eqnames as eq>
-	alert(parentId);
-     if(val == ${eq.eqnid}){  
-	for(var i=1;i<=${eq.count};i++){ 
-	options+="<option value="+i+">"+i+"</option>"; 
-	} 
-     }
-	 </#list>
-	    </#if>
-     
-	$("#second").html(options); 
-	
-	}); 
-	}); 
-</script>
+<script type="text/html" id="barDemo">
+    		<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    	</script>
+    	
+    	<script>
+    		layui.use('table', function() {
+    			var table = layui.table;
+    			//监听表格复选框选择
+    			table.on('checkbox(demo)', function(obj) {
+    				console.log(obj)
+    			});
+    			//监听工具条
+    			table.on('tool(demo)', function(obj) {
+    				var data = obj.data;
+    				if(obj.event === 'detail') {
+    					layer.msg('ID：' + data.id + ' 的查看操作');
+    				} else if(obj.event === 'del') {
+    					layer.confirm('真的删除行么', function(index) {
+    						obj.del();
+    						layer.close(index);
+    					});
+    				} else if(obj.event === 'edit') {
+    					layer.alert('编辑行：<br>' + JSON.stringify(data))
+    				}
+    			});
+    	
+    			$('.demoTable .layui-btn').on('click', function() {
+    				var type = $(this).data('type');
+    				active[type] ? active[type].call(this) : '';
+    			});
+    		});
+    	</script>
 
 </body>
 </html>
