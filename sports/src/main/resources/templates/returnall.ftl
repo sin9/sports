@@ -7,6 +7,7 @@
   <title>高校体育器材管理系统</title>
 <link rel="stylesheet" href="css/layui.css" />
 <link rel="stylesheet" href="css/style.css" />
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -79,49 +80,56 @@
   </div>
   <div class="layui-body" id="main" >
     <!-- 内容主体区域 -->
+   <form class="layui-form" action="/rentequipment" method="post" >
+ <div class="layui-form-item" style="margin:20px">
+    <label class="layui-form-label">归还人姓名</label>
+    <div class="layui-input-block">
+      <input type="text" name="retname" lay-verify="title" autocomplete="off" placeholder="请输入归还人" class="layui-input">
+    </div>
+  </div>
+
+
+    <label class="layui-form-label">出库记录</label>
+    <div class="layui-input-inline" style="margin-left:20px;margin-bottom:20px">
+    
+      <select name="outlog" id="first">
+        <option value="0">请选择出库记录</option>
+         <#if outlogs?exists>
+		<#list outlogs?sort_by("outid") as out>
+        
+        <option value="${out.outid}">${out.outid}：${out.outdate}、${out.outname}、${out.eqnid.name}</option>
+       
+        </#list>
+        </#if>
+      </select>
+    </div>
    
-    	<div style="margin-left:20px">
-    	<table class="layui-table" lay-data="{width: 800, height:400, page:true, id:'idTest'}" lay-filter="demo" >
-    		<thead>
-    			<tr>
-    				
-    				<th lay-data="{field:'id', width:80, sort: true, fixed: true}">器材ID</th>
-    				<th lay-data="{field:'maname', width:80}">器材名</th>
-    				<th lay-data="{field:'matype', width:130, sort: true}">器材状态</th>
-    				
-    				
-    				<th lay-data="{field:'sign', width:300}">入库时间</th>
-    				<!--<th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
-    				<th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>-->
-    				<th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-    			</tr>
-    		</thead>
-    		<tbody>
-    		 <#if eqtj?exists>
-
-                <#list eqtj?sort_by("eid") as eq>
-
-                   <tr>
-
-                             <td>${eq.eid}</td>
-                           <td>${eq.eqnid.name}</td>
-                           <td>${eq.eqsid.eqsname}</td>
-                        
-                           <td>${eq.indate}</td>
-							<td></td>
-                   </tr>
-
-                </#list>
-
-            </#if>
-    		</tbody>
-    	</table>
-    	</div>
-    	<ul class="layui-fixbar" style="right: 50px; bottom: 100px;">
-    		<li class="layui-icon" lay-type="bar1" style="background-color:#393D49"></li>
-    		<li class="layui-icon" lay-type="bar2" style="background-color:#393D49"></li>
-    		<li class="layui-icon layui-fixbar-top" lay-type="top" style="background-color:#393D49"></li>
-    	</ul>
+    <div class="layui-input-inline" style="margin-bottom:20px">
+      <select name="number" id="second">
+        <option value="">请选择数量</option>
+        <option value="2">1</option>
+        <option value="2">2</option>
+        <option value="2">3</option>
+      </select>
+    </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">归还描述</label>
+    <div class="layui-input-block">
+      <textarea placeholder="请输入内容" class="layui-textarea" name="des"></textarea>
+    </div>
+  </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    	<#if error?exists>
+		  <span style="color:red;">${error}</span>
+        </#if>
+    </div>
+  </div>
+  
+  </form>
+    	
   </div>
   
   <div class="layui-footer">
@@ -138,40 +146,6 @@ layui.use('element', function(){
   
 });
 </script>
-<script type="text/html" id="barDemo">
-    		<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-    		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    	</script>
-    	
-    	<script>
-    		layui.use('table', function() {
-    			var table = layui.table;
-    			//监听表格复选框选择
-    			table.on('checkbox(demo)', function(obj) {
-    				console.log(obj)
-    			});
-    			//监听工具条
-    			table.on('tool(demo)', function(obj) {
-    				var data = obj.data;
-    				if(obj.event === 'detail') {
-    					layer.msg('ID：' + data.id + ' 的查看操作');
-    				} else if(obj.event === 'del') {
-    					layer.confirm('真的删除行么', function(index) {
-    						obj.del();
-    						layer.close(index);
-    					});
-    				} else if(obj.event === 'edit') {
-    					layer.alert('编辑行：<br>' + JSON.stringify(data))
-    				}
-    			});
-    	
-    			$('.demoTable .layui-btn').on('click', function() {
-    				var type = $(this).data('type');
-    				active[type] ? active[type].call(this) : '';
-    			});
-    		});
-    	</script>
 
 </body>
 </html>

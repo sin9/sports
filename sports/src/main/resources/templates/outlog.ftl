@@ -69,7 +69,7 @@
           <li class="layui-nav-item">
           <a href="javascript:;">器材归还</a>
           <dl class="layui-nav-child">
-            <dd><a href="/return">归还信息</a></dd>
+            <dd><a href="/returnall">归还信息</a></dd>
             <dd><a href="/returnlog">归还记录</a></dd>
           </dl>
         </li>

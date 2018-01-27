@@ -15,9 +15,11 @@ import cn.sinoutx.sports.model.dao.EqstateDao;
 import cn.sinoutx.sports.model.dao.EquipmentDao;
 import cn.sinoutx.sports.model.dao.IntologDao;
 import cn.sinoutx.sports.model.dao.OutlogDao;
+import cn.sinoutx.sports.model.dao.ReturnlogDao;
 import cn.sinoutx.sports.model.entity.Eqname;
 import cn.sinoutx.sports.model.entity.Eqstate;
 import cn.sinoutx.sports.model.entity.Equipment;
+import cn.sinoutx.sports.model.entity.Outlog;
 import cn.sinoutx.sports.model.entity.User;
 
 @Service
@@ -36,6 +38,8 @@ public class EquipmentService {
 	
 	@Autowired
 	public OutlogDao otd;
+	@Autowired
+	public ReturnlogDao rld;
 	
 	/**
 	 * 添加记录
@@ -73,6 +77,28 @@ public class EquipmentService {
 			eqd.updateState(eqs, equips.get(i).getEid());
 		}
 		int b = otd.addOutlog(new Date(), eqn, number, user, name);
+		return b;
+	}
+	/**
+	 * 归还记录
+	 * @param outlog
+	 * @param number
+	 * @param retname
+	 * @param des
+	 * @param user
+	 * @return
+	 */
+	@Transactional
+	public Integer addReturnlogand(Integer outlog,Integer number,String retname,String des,User user) {
+		Outlog ol = otd.findOne(outlog);
+		Eqname eqn = ol.getEqnid();
+		Eqstate eqsno = esd.findOne(3);
+		List<Equipment> equips = eqd.findByEqnameAndEqstate(eqn, eqsno);
+		Eqstate eqs = esd.findOne(1);
+		for(int i=0;i<number;i++) {
+			eqd.updateState(eqs, equips.get(i).getEid());
+		}
+		int b = rld.addEquipment(new Date(), des, eqn, number, user, retname, ol);
 		return b;
 	}
 

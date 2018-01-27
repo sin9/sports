@@ -81,33 +81,42 @@
     <!-- 内容主体区域 -->
    
     	<div style="margin-left:20px">
-    	<table class="layui-table" lay-data="{width: 800, height:400, page:true, id:'idTest'}" lay-filter="demo" >
+    	<table class="layui-table" lay-data="{width: 1200, height:400, page:true, id:'idTest'}" lay-filter="demo" >
     		<thead>
     			<tr>
     				
-    				<th lay-data="{field:'id', width:80, sort: true, fixed: true}">器材ID</th>
-    				<th lay-data="{field:'maname', width:80}">器材名</th>
-    				<th lay-data="{field:'matype', width:130, sort: true}">器材状态</th>
+    				<th lay-data="{field:'id', width:130, sort: true, fixed: true}">归还记录ID</th>
+    				<th lay-data="{field:'maname', width:130}">器材名</th>
+    				<th lay-data="{field:'matype', width:150, sort: true}">归还时间</th>
     				
+    				<th lay-data="{field:'wealth', width:100}">归还数量</th>
     				
-    				<th lay-data="{field:'sign', width:300}">入库时间</th>
-    				<!--<th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
-    				<th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>-->
+    				<th lay-data="{field:'outid', width:100}">关联出库id</th>
+    				
+    				<th lay-data="{field:'sign', width:100}">操作人</th>
+    				
+    				<th lay-data="{field:'renter', width:100}">归还人</th>
+    				
+    				<th lay-data="{field:'rentmes', width:300}">归还信息</th>
+    		
     				<th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
     			</tr>
     		</thead>
     		<tbody>
-    		 <#if eqtj?exists>
+    		 <#if returnlogs?exists>
 
-                <#list eqtj?sort_by("eid") as eq>
+                <#list returnlogs?sort_by("reid") as re>
 
                    <tr>
 
-                             <td>${eq.eid}</td>
-                           <td>${eq.eqnid.name}</td>
-                           <td>${eq.eqsid.eqsname}</td>
-                        
-                           <td>${eq.indate}</td>
+                             <td>${re.reid}</td>
+                           <td>${re.eqnid.name}</td>
+                           <td>${re.redate}</td>
+                           <td>${re.returnnum}</td>
+                        <td>${re.outid.outid}</td>
+                           <td>${re.uid.uname}</td>
+                           <td>${re.retname}</td>
+                           <td>${re.redes}</td>
 							<td></td>
                    </tr>
 
