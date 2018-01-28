@@ -81,7 +81,7 @@
     <!-- 内容主体区域 -->
    
     	<div style="margin-left:20px">
-    	<table class="layui-table" lay-data="{width: 1200, height:400, page:true, id:'idTest'}" lay-filter="demo" >
+    	<table class="layui-table" lay-data="{width: 1100, height:400, page:true, id:'idTest'}" lay-filter="demo" >
     		<thead>
     			<tr>
     				
@@ -97,7 +97,7 @@
     				
     				<th lay-data="{field:'renter', width:100}">归还人</th>
     				
-    				<th lay-data="{field:'rentmes', width:300}">归还信息</th>
+    				<th lay-data="{field:'rentmes', width:250}">归还信息</th>
     		
     				<th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
     			</tr>

@@ -14,6 +14,6 @@ import cn.sinoutx.sports.model.entity.User;
 public interface ReturnlogDao extends CrudRepository<Returnlog, Integer> {
 
 	@Modifying
-    @Query(value = "insert into Returnlog(redate,redes,eqname,returnnum,user,retname,outlog) values(?1,?2,?3,?4,?5,?6)",nativeQuery = true)
+    @Query(value = "insert into Returnlog(redate,redes,eqname,returnnum,user,retname,outlog) values(?1,?2,?3,?4,?5,?6,?7)",nativeQuery = true)
     int addEquipment(Date redate,String redes,Eqname eqname,Integer outnum,User user,String retname,Outlog outlog);
 }

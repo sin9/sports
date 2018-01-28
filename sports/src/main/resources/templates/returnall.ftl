@@ -80,7 +80,7 @@
   </div>
   <div class="layui-body" id="main" >
     <!-- 内容主体区域 -->
-   <form class="layui-form" action="/rentequipment" method="post" >
+   <form class="layui-form" action="/returnall" method="post" >
  <div class="layui-form-item" style="margin:20px">
     <label class="layui-form-label">归还人姓名</label>
     <div class="layui-input-block">
@@ -92,7 +92,7 @@
     <label class="layui-form-label">出库记录</label>
     <div class="layui-input-inline" style="margin-left:20px;margin-bottom:20px">
     
-      <select name="outlog" id="first">
+      <select name="outlog">
         <option value="0">请选择出库记录</option>
          <#if outlogs?exists>
 		<#list outlogs?sort_by("outid") as out>
@@ -105,11 +105,11 @@
     </div>
    
     <div class="layui-input-inline" style="margin-bottom:20px">
-      <select name="number" id="second">
-        <option value="">请选择数量</option>
-        <option value="2">1</option>
+      <select name="number">
+        <option value="0">请选择数量</option>
+        <option value="1">1</option>
         <option value="2">2</option>
-        <option value="2">3</option>
+        <option value="3">3</option>
       </select>
     </div>
     <div class="layui-form-item layui-form-text">
