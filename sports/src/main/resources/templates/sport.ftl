@@ -112,16 +112,20 @@
     </tr> 
   </thead>
   <tbody>
-    <tr>
-      <td>10010</td>
-      <td>羽毛球</td>
-      <td>球类器材</td>
-    </tr>
-    <tr>
-      <td>10011</td>
-      <td>乒乓球</td>
-      <td>球类器材</td>
-    </tr>
+     <#if intologs?exists>
+
+                <#list intologs as key>
+
+                   <tr>
+                             <td>${key.inid}</td>
+                           <td>${key.eqnid.name}</td>
+                             <td>${key.eqnid.eqtid.eqtname}</td>
+							
+                   </tr>
+
+                </#list>
+
+            </#if>
   </tbody>
 </table>
     				
@@ -147,16 +151,20 @@
     </tr> 
   </thead>
   <tbody>
-    <tr>
-      <td>10010</td>
-      <td>羽毛球</td>
-      <td>球类器材</td>
-    </tr>
-    <tr>
-      <td>10011</td>
-      <td>乒乓球</td>
-      <td>球类器材</td>
-    </tr>
+     <#if outlogs?exists>
+
+                <#list outlogs as key>
+
+                   <tr>
+                             <td>${key.outid}</td>
+                           <td>${key.eqnid.name}</td>
+                           <td>${key.eqnid.eqtid.eqtname}</td>
+                          
+                   </tr>
+
+                </#list>
+
+            </#if>
   </tbody>
 </table>
     				

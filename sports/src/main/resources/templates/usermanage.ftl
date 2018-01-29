@@ -87,7 +87,7 @@
     				
     				<th lay-data="{field:'id', width:80, sort: true, fixed: true}">用户ID</th>
     				<th lay-data="{field:'maname', width:80}">用户名</th>
-    				<th lay-data="{field:'matype', width:80}">用户角色</th>
+    				<th lay-data="{field:'matype', width:120}">用户角色</th>
     				<th lay-data="{field:'gender', width:80}">性别</th>
     				<th lay-data="{field:'count', width:80}">电话</th>
     				<th lay-data="{field:'sign', width:150}">地址</th>
@@ -104,10 +104,10 @@
                              <td>${key.uid}</td>
                            <td>${key.uname}</td>
                            <td>${key.rid.rname}</td>
-                           <td>${key.gender}</td>
-                        	<td>${key.tel}</td>
-                           <td>${key.address}</td>
-                             <td>${key.email}</td>
+                           <td>${key.gender!"男"}</td>
+                        	<td>${key.tel!"null"}</td>
+                           <td>${key.address!"null"}</td>
+                             <td>${key.email!"null"}</td>
 							<td></td>
                    </tr>
 
