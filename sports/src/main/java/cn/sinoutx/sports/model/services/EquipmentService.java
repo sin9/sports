@@ -118,4 +118,5 @@ public class EquipmentService {
 		Eqtype eqt = etd.findOne(eqtid);
 		return end.updateState(detail, eqt, id);
 	}
+	
 }

@@ -107,7 +107,7 @@
                            <td>${key.detail}</td>
                            <td>
     		<a class="layui-btn layui-btn-xs" href="/allequipment/edit/${key.eqnid}">编辑</a>
-    		<a class="layui-btn layui-btn-danger layui-btn-xs" >删除</a></td>
+    		
 							
                    </tr>
 
