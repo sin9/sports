@@ -23,4 +23,10 @@ public class UserService {
 		
 		return ud.updatepass(newpassword, uid);
 	}
+	
+	@Transactional
+	public void delete(Integer uid) {
+		
+		 ud.delete(uid);;
+	}
 }

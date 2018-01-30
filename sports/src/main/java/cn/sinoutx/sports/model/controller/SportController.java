@@ -50,12 +50,12 @@ public class SportController {
 	public String deleteeq(@PathVariable Integer id,Model model) {
 	
 		Equipment em = ed.findOne(id);
-		if(em == null) {
+		if(em != null) {
 		es.deleteeq(id);
 		return "redirect:/allequipment";
 		}else {
 			model.addAttribute("error", "操作失败");
-			return "redirect:/allequipment/edit/"+id;
+			return "redirect:/allequipment";
 		}
 	}
 }

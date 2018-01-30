@@ -106,7 +106,7 @@
                         	<td>${key.getCount()}</td>
                            <td>${key.detail}</td>
                            <td>
-    		<a class="layui-btn layui-btn-xs" href="/allequipment/edit/${key.eqnid}">编辑</a>
+    		<a class="layui-btn layui-btn-xs" href="/edit/${key.eqnid}">编辑</a>
     		
 							
                    </tr>
@@ -116,14 +116,11 @@
             </#if>
     		</tbody>
     	</table>
-    	<!-- </div>
-    	<ul class="layui-fixbar" style="right: 50px; bottom: 100px;">
-    		<li class="layui-icon" lay-type="bar1" style="background-color:#393D49"></li>
-    		<li class="layui-icon" lay-type="bar2" style="background-color:#393D49"></li>
-    		<li class="layui-icon layui-fixbar-top" lay-type="top" style="background-color:#393D49"></li>
-    	</ul>
+    	<#if error?exists>
+		<span style="color:red;">${error}</span>
+        </#if>
   </div>
-   -->
+ 
   <div class="layui-footer">
     <!-- 底部固定区域 -->
   <span class="foot">Copyright © 2018 高校体育器材管理系统  sinoutx.cn All Rights Reserved. 备案号：忘了</span>
