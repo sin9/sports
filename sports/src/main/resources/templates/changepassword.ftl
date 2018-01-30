@@ -7,6 +7,7 @@
   <title>高校体育器材管理系统</title>
 <link rel="stylesheet" href="css/layui.css" />
 <link rel="stylesheet" href="css/style.css" />
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -79,51 +80,39 @@
   </div>
   <div class="layui-body" id="main" >
     <!-- 内容主体区域 -->
-   
-    	<div style="margin-left:20px">
-    	<table class="layui-table" lay-data="{height:400, page:true, id:'test2', skin: 'row', even: true}">
-    		<thead>
-    			<tr>
-    				
-    				<th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-    				<th lay-data="{field:'maname', width:80}">器材名</th>
-    				<th lay-data="{field:'matype', width:130, sort: true}">器材类型</th>
-    				
-    				<th lay-data="{field:'count', width:80}">数量</th>
-    				<th lay-data="{field:'sign', width:400}">器材说明</th>
-    				<th lay-data="{field:'right', width:178}">操作</th>
-    			</tr>
-    		</thead>
-    		<tbody>
-    		 <#if eqinfo?exists>
-
-                <#list eqinfo as key>
-
-                   <tr>
-                             <td>${key.eqnid}</td>
-                           <td>${key.name}</td>
-                           <td>${key.eqtid.eqtname}</td>
-                        	<td>${key.getCount()}</td>
-                           <td>${key.detail}</td>
-                           <td>
-    		<a class="layui-btn layui-btn-xs" href="/allequipment/edit/${key.eqnid}">编辑</a>
-    		<a class="layui-btn layui-btn-danger layui-btn-xs" >删除</a></td>
-							
-                   </tr>
-
-                </#list>
-
-            </#if>
-    		</tbody>
-    	</table>
-    	<!-- </div>
-    	<ul class="layui-fixbar" style="right: 50px; bottom: 100px;">
-    		<li class="layui-icon" lay-type="bar1" style="background-color:#393D49"></li>
-    		<li class="layui-icon" lay-type="bar2" style="background-color:#393D49"></li>
-    		<li class="layui-icon layui-fixbar-top" lay-type="top" style="background-color:#393D49"></li>
-    	</ul>
+  <form class="layui-form" action="/changepassword"  method="post" >
+  <div class="layui-form-item" style="margin-left:20px;margin-top:20px">
+    <label class="layui-form-label">输入原密码</label>
+    <div class="layui-input-inline">
+      <input type="password" name="nowpassword" autocomplete="off" class="layui-input">
+    </div>
   </div>
-   -->
+  <div class="layui-form-item" style="margin-left:20px;">
+    <label class="layui-form-label">再次输入原密码</label>
+    <div class="layui-input-inline">
+      <input type="password" name="nowagainpassword" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">请务必填写</div>
+  </div>
+   <div class="layui-form-item" style="margin-left:20px;">
+    <label class="layui-form-label">新密码</label>
+    <div class="layui-input-inline">
+      <input type="password" name="newpassword" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">请务必填写</div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    <#if error?exists>
+		  <span style="color:red;line-height:38px;">${error}</span>
+        </#if>
+    </div>
+  </div>
+</form>
+  </div>
+  
   <div class="layui-footer">
     <!-- 底部固定区域 -->
   <span class="foot">Copyright © 2018 高校体育器材管理系统  sinoutx.cn All Rights Reserved. 备案号：忘了</span>
@@ -138,7 +127,6 @@ layui.use('element', function(){
   
 });
 </script>
-
 
 </body>
 </html>

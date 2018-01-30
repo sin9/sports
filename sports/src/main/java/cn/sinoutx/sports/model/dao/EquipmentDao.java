@@ -30,4 +30,6 @@ public interface EquipmentDao extends CrudRepository<Equipment, Integer> {
 	@Modifying
     @Query(value = "update Equipment set eqstate = ?1 where eid = ?2",nativeQuery = true)
     int updateState(Eqstate eqstate,Integer eid);
+	
+	
 }

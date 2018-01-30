@@ -94,12 +94,14 @@
         </#if>
       </select>
     </div>
+    </div>
      <div class="layui-form-item">
     <div class="layui-inline">
       <label class="layui-form-label">数量</label>
       <div class="layui-input-inline">
         <input type="text" name="number" lay-verify="required|number" autocomplete="off" class="layui-input">
       </div>
+    </div>
     </div>
    
     <div class="layui-form-item">
