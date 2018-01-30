@@ -93,7 +93,7 @@
     				<th lay-data="{field:'sign', width:300}">入库时间</th>
     				<!--<th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
     				<th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>-->
-    				<th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+    				<th lay-data="{field: 'right', width:178}">操作</th>
     			</tr>
     		</thead>
     		<tbody>
@@ -108,6 +108,8 @@
                            <td>${eq.eqsid.eqsname}</td>
                         
                            <td>${eq.indate}</td>
+                            <td>
+    		<a class="layui-btn layui-btn-danger layui-btn-xs" href="/sport/delete/${eq.eid}">删除</a></td>
 							<td></td>
                    </tr>
 
@@ -117,11 +119,9 @@
     		</tbody>
     	</table>
     	</div>
-    	<ul class="layui-fixbar" style="right: 50px; bottom: 100px;">
-    		<li class="layui-icon" lay-type="bar1" style="background-color:#393D49"></li>
-    		<li class="layui-icon" lay-type="bar2" style="background-color:#393D49"></li>
-    		<li class="layui-icon layui-fixbar-top" lay-type="top" style="background-color:#393D49"></li>
-    	</ul>
+    	<#if error?exists>
+		<span style="color:red;">${error}</span>
+        </#if>
   </div>
   
   <div class="layui-footer">
@@ -138,40 +138,6 @@ layui.use('element', function(){
   
 });
 </script>
-<script type="text/html" id="barDemo">
-    		<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-    		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    	</script>
-    	
-    	<script>
-    		layui.use('table', function() {
-    			var table = layui.table;
-    			//监听表格复选框选择
-    			table.on('checkbox(demo)', function(obj) {
-    				console.log(obj)
-    			});
-    			//监听工具条
-    			table.on('tool(demo)', function(obj) {
-    				var data = obj.data;
-    				if(obj.event === 'detail') {
-    					layer.msg('ID：' + data.id + ' 的查看操作');
-    				} else if(obj.event === 'del') {
-    					layer.confirm('真的删除行么', function(index) {
-    						obj.del();
-    						layer.close(index);
-    					});
-    				} else if(obj.event === 'edit') {
-    					layer.alert('编辑行：<br>' + JSON.stringify(data))
-    				}
-    			});
-    	
-    			$('.demoTable .layui-btn').on('click', function() {
-    				var type = $(this).data('type');
-    				active[type] ? active[type].call(this) : '';
-    			});
-    		});
-    	</script>
 
 </body>
 </html>
